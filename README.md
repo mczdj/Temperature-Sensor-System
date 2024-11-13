@@ -1,40 +1,41 @@
-Temperature Monitoring and Control System
-This is a Raspberry Pi-based temperature monitoring and control system that uses various GPIO components to manage temperature-related tasks.
+# TkCircuit-Based Temperature Monitoring and Emergency System
 
-Features
-Temperature Monitoring: The system continuously monitors the temperature and takes appropriate actions based on the readings.
-Temperature Thresholds: The system has the following temperature thresholds:
-Normal range: 30°C to 40°C
-High temperature: Above 40°C
-System States:
-Entry Idle State: The system is turned off and waiting for user input.
-Stay Idle State: The system is in idle mode, waiting for the "Start System" button to be pressed.
-Entry Monitoring Temp State: The system is enabled and ready to monitor the temperature.
-Stay Monitoring Temp State: The system is actively monitoring the temperature.
-Temp High State: The temperature is in the high range (30°C to 40°C), and the ventilation system is activated.
-Emergency State: The temperature is above 40°C, and the emergency alert is triggered.
-User Controls:
-"Start System" button: Starts the temperature monitoring process.
-"Reset System" button: Resets the system to the Entry Idle State.
-Graphical Interface: The system uses the TkCircuit library to provide a graphical interface for visualizing the components and system state.
-Hardware Components
-Raspberry Pi
-LEDs (System On LED, Emergency LED)
-Buttons (Start System, Reset System)
-Buzzer
-Servo Motor (for ventilation control)
-Temperature Sensor (simulated using random values)
-How to Run the Program
-Install the required libraries:
-pip install tkgpio gpiozero
-Save the provided code in a file (e.g., temperature_system.py).
-Run the program:
-python temperature_system.py
-Customization
-You can customize the system by modifying the configuration dictionary in the code. This includes changing the position, name, and pin assignments for the various components.
+This project simulates a temperature monitoring and emergency system using the TkCircuit library for a virtual GPIO interface. It includes features such as temperature monitoring, system state management, and emergency alerts.
 
-Future Improvements
-Integrate a real temperature sensor (e.g., MCP3008 ADC) for accurate temperature readings.
-Add more sophisticated temperature control mechanisms, such as temperature-based fan speed control.
-Implement logging and data visualization features for monitoring the system's performance over time.
-Explore integration with cloud-based platforms or home automation systems.
+---
+
+## Features
+- **Virtual Components**: Simulates LEDs, Buttons, Buzzer, Servo Motor, and Temperature Sensor.
+- **State Machine**: Manages system states for idle, monitoring, and emergency modes.
+- **Temperature Simulation**: Random temperature generation for testing various states.
+- **Emergency Handling**: Activates an alert and ventilation motor in critical temperature conditions.
+
+---
+
+## Components Used
+The system uses the following simulated components via `TkCircuit`:
+1. **LEDs**:
+   - System On LED (Pin 16)
+   - Emergency LED (Pin 20)
+2. **Buttons**:
+   - Start System Button (Pin 18)
+   - Reset System Button (Pin 8)
+3. **Buzzer**:
+   - Alert Buzzer (Pin 9)
+4. **Servo Motor**:
+   - Ventilation Motor (Pin 23)
+5. **Temperature Sensor**:
+   - Simulated using random values.
+
+---
+
+## Circuit Configuration
+The GUI layout is specified using the following `TkCircuit` configuration:
+```python
+configuration = {
+    "width": 600,
+    "height": 600,
+    "leds": [{"x": 50, "y": 40, "name": "OnLed", "pin": 16}, {"x": 150, "y": 40, "name": "EMLed", "pin": 20}],
+    "buttons": [{"x": 50, "y": 150, "name": "Start System", "pin": 18},
+                {"x": 150, "y": 150, "name": "Reset System", "pin": 8}],
+    "buzzers": [{"
